@@ -24,11 +24,12 @@ const Home = () => {
     async function actualizarFechaHoyDB() {
       setInterval(() => {
         obtenerFechaHoyDB()
-      }, 1000)
+      }, 1000*30)
     }
-
+    
     /** Se busca desde la base de datos el ID del día de hoy, generando así el QR*/
     async function obtenerFechaHoyDB() {
+      setEnviandoData(true);
       try {
         const response = await axios.get(API_URL+'/dias/hoy');
         const data = response.data.data;
@@ -36,6 +37,8 @@ const Home = () => {
         generarFechaHoy(data)
       } catch (e) {
         Swal.fire('Error', 'Ha ocurrido un error al obtener la fecha de hoy', 'error')
+      } finally {
+        setEnviandoData(false);
       }
     }
 
@@ -82,7 +85,6 @@ const Home = () => {
             ? <div className='mx-auto text-center font-medium text-4xl text-gray-500'>Cargando...</div>
             /** Aquí es donde se usa una librería para generar QR (se le puede catalogar como servicio externo)*/
             : <QRCode value={fechaData._id} size={350} className='border-2 border-gray-200 shadow-lg'/>
-
         }
       </div>
     </div>
