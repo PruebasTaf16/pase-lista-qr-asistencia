@@ -41,6 +41,8 @@ const Home = () => {
 
     /**Función encargada de generar el día, y así obtener el QR */
     async function generarFechaHoy(fechaObtenidaDB: any) {
+      console.log("IMPLEMENTACIÓN MOVIDA EN EL API");
+      return;
       try {
         const auxFecha = new Date()
 
