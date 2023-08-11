@@ -69,6 +69,7 @@ const Home = () => {
     }
 
     actualizarHora()
+    obtenerFechaHoyDB()
     actualizarFechaHoyDB()
   }, [])
   
